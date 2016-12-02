@@ -15,3 +15,29 @@
   // Magic!
   console.log('Keepin\'n it clean with an external script!');
 })();
+
+//keyup events
+$(document).ready(function() {
+  $(".flexsearch-input-wrapper").on('input', function() {
+    var input = $(".flexsearch-input").val();
+    $("#results").html("");
+    if(input.length > 0) {
+      $("#results").show();
+
+      //request using $.ajax()
+      $.ajax({
+        url: "http://www.mattbowytz.com/simple_api.json?data=all",
+        dataType: "json",
+        success: function(response) {
+          $.each(response.data, function(index, val) {
+            $.each(val, function(i, v) {
+              if(v.toLowerCase().search(input) > -1) {
+                $("#results").append("<li>" + v + "</li>");
+              }
+            })
+          })
+        }
+      });
+    }
+  });
+});

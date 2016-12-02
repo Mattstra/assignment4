@@ -96,3 +96,8 @@ input:-moz-placeholder {
   line-height: 45px;
   text-align: center;
 }
+
+#results  {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 20px;
+}
